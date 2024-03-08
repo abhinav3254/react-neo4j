@@ -37,6 +37,10 @@ function Flow() {
         [setEdges],
     );
 
+    const handleNodeSubmit = (data) => {
+        console.log('Submitted data: in flow ', data);
+    };
+
     return (
         <div>
             <div className="ButtonGroup">
@@ -49,7 +53,7 @@ function Flow() {
                     <p>Add Edge</p>
                 </div>
             </div>
-            <DialogBox visible={visible} setVisible={setVisible} />
+            <DialogBox visible={visible} setVisible={setVisible} onSubmit={handleNodeSubmit} />
             <EdgeDialogBox visible={edgeVisible} setVisible={setEdgeVisible} />
             <div style={{ width: '100vw', height: '100vh', padding: '70px 0 0 0' }} className='Flow'>
                 <ReactFlow

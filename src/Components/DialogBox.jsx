@@ -4,7 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import './DialogBox.scss'
 import { Button } from 'primereact/button';
 
-function DialogBox({ visible, setVisible }) {
+function DialogBox({ visible, setVisible, onSubmit }) {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
 
@@ -16,8 +16,7 @@ function DialogBox({ visible, setVisible }) {
                 label: name
             }
         };
-        console.log(`id is ${id} and name is ${name}`);
-        console.log(`data is`, data);
+        onSubmit(data);
     };
 
     return (
