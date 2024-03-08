@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react';
+
 import {
     BaseEdge,
     EdgeLabelRenderer,
     getStraightPath,
     useReactFlow,
 } from 'reactflow';
+import EdgeLabel from './EdgeLabel';
+
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, label }) {
+    const [visible, setVisible] = useState(false);
     // const { setEdges } = useReactFlow();
     const [edgePath, labelX, labelY] = getStraightPath({
         sourceX,
@@ -42,9 +46,10 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, label }) {
                             fontSize: '10px'
                         }}
                         className="nodrag nopan"
-                        onClick={() => console.log('Button clicked')}
+                        onClick={() => setVisible(true)}
                     >
                         Add Label
+                        <EdgeLabel visible={visible} setVisible={setVisible} />
                     </button>
                 )}
             </EdgeLabelRenderer>
