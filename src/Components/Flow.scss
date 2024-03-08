@@ -1,0 +1,33 @@
+.ButtonGroup {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .ButtonDiv {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        background-color: #007DFC;
+        border-radius: 5px;
+
+        img {
+            width: 25px;
+            height: 25px;
+            margin: 0 2px;
+        }
+
+        p {
+            color: white;
+            font-size: 15px;
+            margin: 10px 2px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
