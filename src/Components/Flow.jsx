@@ -14,16 +14,21 @@ import edgeImg from '../images/edge.svg'
 import 'reactflow/dist/style.css';
 import './Flow.scss'
 import EdgeDialogBox from './EdgeDialogBox';
+import CustomEdge from './CustomEdge';
 
 const initialNodes = [
-    // { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-    // { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-    // { id: '3', position: { x: 200, y: 200 }, data: { label: '3' } },
+    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
+    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+    { id: '3', position: { x: 200, y: 200 }, data: { label: '3' } },
 ];
 const initialEdges = [
-    // { id: 'e1-3', source: '1', target: '3' },
-    // { id: 'e2-3', source: '2', target: '3' },
+    { id: 'e1-3', type: 'custom-edge', label: 'node1', source: '1', target: '3' },
+    { id: 'e2-3', type: 'custom-edge', label: 'node2', source: '2', target: '3' },
 ];
+
+const edgeTypes = {
+    'custom-edge': CustomEdge,
+};
 
 function Flow() {
     const [visible, setVisible] = useState(false);
@@ -32,9 +37,17 @@ function Flow() {
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
     const onConnect = useCallback(
-        (params) => setEdges((eds) => addEdge(params, eds)),
+        (connection) => {
+            const edge = { ...connection, type: 'custom-edge' };
+            setEdges((eds) => addEdge(edge, eds));
+        },
         [setEdges],
     );
+
+    // const onConnect = useCallback(
+    //     (params) => setEdges((eds) => addEdge(params, eds)),
+    //     [setEdges],
+    // );
 
     // const handleNodeSubmit = (data) => {
     //     console.log('Submitted data: in flow ', data);
@@ -75,6 +88,7 @@ function Flow() {
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
+                    edgeTypes={edgeTypes}
                 >
                     <Controls />
                     <MiniMap />
