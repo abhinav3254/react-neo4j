@@ -7,13 +7,26 @@ import { Button } from 'primereact/button';
 function DialogBox({ visible, setVisible }) {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
+
+    const submit = () => {
+        const data = {
+            id: id,
+            position: { x: 0, y: 0 },
+            data: {
+                label: name
+            }
+        };
+        console.log(`id is ${id} and name is ${name}`);
+        console.log(`data is`, data);
+    };
+
     return (
         <div>
             <Dialog header="Node" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
                 <div className="card flex justify-content-center">
                     <InputText value={id} onChange={(e) => setId(e.target.value)} placeholder='id' className='input' />
                     <InputText value={name} onChange={(e) => setName(e.target.value)} placeholder='Name' className='input' />
-                    <Button icon="pi pi-check" />
+                    <Button icon="pi pi-check" onClick={submit} />
                 </div>
             </Dialog>
         </div>

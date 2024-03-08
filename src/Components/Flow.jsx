@@ -10,6 +10,7 @@ import ReactFlow, {
 import DialogBox from './DialogBox';
 import nodeImg from '../images/node.svg'
 import edgeImg from '../images/edge.svg'
+import { Button } from 'primereact/button';
 
 import 'reactflow/dist/style.css';
 import './Flow.scss'
@@ -50,7 +51,7 @@ function Flow() {
             </div>
             <DialogBox visible={visible} setVisible={setVisible} />
             <EdgeDialogBox visible={edgeVisible} setVisible={setEdgeVisible} />
-            <div style={{ width: '100vw', height: '100vh' }}>
+            <div style={{ width: '100vw', height: '100vh', padding: '70px 0 0 0' }} className='Flow'>
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
