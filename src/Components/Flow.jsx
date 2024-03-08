@@ -10,7 +10,6 @@ import ReactFlow, {
 import DialogBox from './DialogBox';
 import nodeImg from '../images/node.svg'
 import edgeImg from '../images/edge.svg'
-import { Button } from 'primereact/button';
 
 import 'reactflow/dist/style.css';
 import './Flow.scss'
@@ -37,9 +36,23 @@ function Flow() {
         [setEdges],
     );
 
+    // const handleNodeSubmit = (data) => {
+    //     console.log('Submitted data: in flow ', data);
+    // };
     const handleNodeSubmit = (data) => {
-        console.log('Submitted data: in flow ', data);
+        const newNodeId = (nodes.length + 1).toString();
+        const newNode = {
+            id: newNodeId,
+            position: { x: 0, y: 0 },
+            data: {
+                label: data.data.label
+            }
+        };
+        setNodes([...nodes, newNode]);
+
+        console.log('Submitted data: in flow ', JSON.stringify(data.data.label));
     };
+
 
     return (
         <div>
